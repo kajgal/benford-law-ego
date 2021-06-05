@@ -1,0 +1,9 @@
+[ ZERO VALUES ] = 0
+[ EXPECTED ] = [30.1, 17.6, 12.5, 9.7, 7.9, 6.7, 5.8, 5.1, 4.6]
+[ OBSERVED ] = [25, 17, 18, 10, 7, 2, 7, 7, 7]
+[ P-VALUE ] = 0.3489449805250343
+[ SIGNIFICANCE LEVEL ] = 0.05
+[ CHI-SQUARE ] = 8.921691980609015
+[ CRITICAL VALUE ] = 15.51
+[ CHI-SQUARE < CRITICAL VALUE ] = True
+[ CONCLUSION ] = Data from file matches Benford distribution
