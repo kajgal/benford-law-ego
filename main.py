@@ -121,8 +121,12 @@ proper = []
 def process_data(raw_data):
     # sort data by it's p-value
     result_data = dict()
-    for filename, p_value in raw_data.items():
-        result_data[filename] = math.pow((1 - p_value), 13.5)
+    for filename, chi_square in raw_data.items():
+
+        if chi_square >= critical_value:
+            result_data[filename] = 1
+        else:
+            result_data[filename] = round(chi_square / critical_value, 2)
 
     #
     sorted_by_p_value = sorted(result_data.items(), key=lambda kv: kv[1])
@@ -142,7 +146,9 @@ def process_data(raw_data):
 
 def write_to_csv(final_data):
     with open ('452758.csv', 'w', newline='') as file:
-        writer = csv.writer(file)
+        writer = csv.writer(file, delimiter=";")
+        labels = ['filename', 'coefficient', 'ordinal number']
+        writer.writerow(labels)
         writer.writerows(final_data)
 
 
@@ -173,9 +179,9 @@ for filename in os.listdir(path_to_data):
                 proper.append(filename)
             else:
                 fraud.append(filename)
-            # p-value will be re-used for scaling results in .csv
 
-            raw_data[filename] = p_value
+            # chi-square will be re-used for scaling results in .csv
+            raw_data[filename] = chi_square
 
         print("----------------------------------------------------------------------------------")
 
